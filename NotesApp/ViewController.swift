@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         self.tblNotesList.estimatedRowHeight = 100
         tblNotesList.delegate = self
         tblNotesList.dataSource =  self
-        tblNotesList.reloadData()
+//        tblNotesList.reloadData()
         tblNotesList.separatorColor = .clear
         searchNotes.delegate = self
         parentScreen = ""
@@ -61,7 +61,12 @@ class ViewController: UIViewController {
     
     @IBAction func unwindtoNotesListScreen(segue:UIStoryboardSegue) {
         if segue.identifier == "UWToNotesList" {
-            self.parentScreen = "FilterDataTableViewCell"
+            let viewController = segue.source as! FilterNotesViewController
+            if viewController.selectedFilter{
+                self.parentScreen = "FilterDataTableViewCell"
+            }else{
+                self.parentScreen = ""
+            }
         }
     }
     
